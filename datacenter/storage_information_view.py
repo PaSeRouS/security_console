@@ -1,11 +1,7 @@
-import datetime
-
 from django.shortcuts import render
-from django.utils.timezone import localtime
 
-from datacenter.models import Passcard
-from datacenter.models import Visit
-
+from datacenter.generic_functions import format_duration, get_duration
+from datacenter.models import Passcard, Visit
 
 def storage_information_view(request):
     visits = Visit.objects.filter(leaved_at=None)
@@ -24,9 +20,3 @@ def storage_information_view(request):
     }
     
     return render(request, 'storage_information.html', context)
-
-def get_duration(visit):
-    return localtime() - visit.entered_at
-
-def format_duration(duration):
-    return datetime.timedelta(seconds=int(duration.total_seconds()))

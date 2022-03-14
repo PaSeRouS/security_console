@@ -1,10 +1,7 @@
-import datetime
-
 from django.shortcuts import render
-from django.utils.timezone import localtime
 
-from datacenter.models import Passcard
-from datacenter.models import Visit
+from datacenter.generic_functions import format_duration, get_duration
+from datacenter.models import Passcard, Visit
 
 
 def passcard_info_view(request, passcode):
@@ -27,16 +24,6 @@ def passcard_info_view(request, passcode):
         'this_passcard_visits': this_passcard_visits
     }
     return render(request, 'passcard_info.html', context)
-
-def get_duration(visit):
-    if visit.leaved_at:
-        return visit.leaved_at - visit.entered_at
-    else:
-        return localtime() - visit.entered_at
-
-
-def format_duration(duration):
-    return datetime.timedelta(seconds=int(duration.total_seconds()))
 
 
 def is_visit_long(duration, minutes=60):
