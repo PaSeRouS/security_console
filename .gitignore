@@ -1,3 +1,4 @@
 # Игнорировать эти файлы
 poetry.lock
 pyproject.toml
+__pycache__
