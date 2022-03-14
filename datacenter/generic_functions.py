@@ -12,3 +12,7 @@ def get_duration(visit):
 
 def format_duration(duration):
     return datetime.timedelta(seconds=int(duration.total_seconds()))
+
+
+def is_visit_long(duration, minutes=60):
+    return int(duration.total_seconds() / 60) > minutes
