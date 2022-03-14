@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from datacenter.generic_functions import format_duration, get_duration
+from datacenter.generic_functions import format_duration, get_duration, is_visit_long
 from datacenter.models import Passcard, Visit
 
 
@@ -24,7 +24,3 @@ def passcard_info_view(request, passcode):
         'this_passcard_visits': this_passcard_visits
     }
     return render(request, 'passcard_info.html', context)
-
-
-def is_visit_long(duration, minutes=60):
-    return int(duration.total_seconds() / 60) > minutes
